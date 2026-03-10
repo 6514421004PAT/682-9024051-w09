@@ -12,18 +12,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('communities_tag', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('communities_id');
-            $table->unsignedBigInteger('tag_id');
-            $table->timestamps();
+{
+    Schema::create('communities_tag', function (Blueprint $table) {
+        $table->id();
+        
+        $table->unsignedBigInteger('community_id'); 
+        $table->unsignedBigInteger('tag_id');
+        $table->timestamps();
 
-
-            $table->foreign('communities_id')->references('id')->on('communities');
-            $table->foreign('tag_id')->references('id')->on('tag');
-        });
-    }
+        
+        $table->foreign('community_id')->references('id')->on('communities')->onDelete('cascade');
+        $table->foreign('tag_id')->references('id')->on('tag')->onDelete('cascade');
+    });
+}
 
 
     /**
@@ -34,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('communities_tag');
     }
 };
+

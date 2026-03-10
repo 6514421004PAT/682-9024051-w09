@@ -1,13 +1,9 @@
 <?php
 
-
 namespace Database\Seeders;
 
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
+use App\Models\Tag;
 
 class TagSeeder extends Seeder
 {
@@ -16,11 +12,20 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('tag')->insert([
-            ['tag_name' => "วังสวนบ้านแก้ว",],
-            ['tag_name' => "มหาวิทยาลัยราชภัฏรำไพพรรณี",],
-            ['tag_name' => "เรือนเขียว",],
-            ['tag_name' => "เรือนเทา",],
-        ]);
+        
+        $tags = [
+            'แหล่งท่องเที่ยว',
+            'อาหารพื้นเมือง',
+            'วัฒนธรรม',
+            'เกษตรกรรม',
+            'ที่พัก/โฮมสเตย์',
+        ];
+
+        foreach ($tags as $tagName) {
+           
+            Tag::firstOrCreate([
+                'tag_name' => $tagName
+            ]);
+        }
     }
 }

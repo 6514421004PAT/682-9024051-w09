@@ -9,12 +9,10 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run(): void
-    {
-       
-        $this->call([
-            DistributorSeeder::class,
-            MovieSeeder::class,
-        ]);
-    }
+   public function run(): void
+{
+    $this->call([
+        TagSeeder::class,
+    ]);
+}
 }

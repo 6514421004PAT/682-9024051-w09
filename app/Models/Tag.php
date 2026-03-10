@@ -1,14 +1,18 @@
 <?php
 
-
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-
-class Title extends Model
+class Tag extends Model
 {
-    protected $table = "title";
-    protected $fillable= ['ttl_name'];
+    protected $table = 'tag'; 
+    protected $fillable = ['tag_name'];
+
+    
+    public function communities(): BelongsToMany
+    {
+        return $this->belongsToMany(Community::class, 'communities_tag', 'tag_id', 'community_id');
+    }
 }
